@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Dynamic schema validation helpers
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidPost(data) {
+      return data.id is string && data.id.size() <= 128
+        && data.category is string && data.category.size() <= 128
+        && data.badge is string && data.badge.size() <= 100
+        && data.title is string && data.title.size() <= 500
+        && data.author is string && data.author.size() <= 100
+        && data.date is string && data.date.size() <= 100;
+    }
+
+    function isValidApplication(data) {
+      return data.receiptId is string && data.receiptId.size() <= 128
+        && data.date is string && data.date.size() <= 100
+        && data.schemeName is string && data.schemeName.size() <= 500
+        && data.badge is string && data.badge.size() <= 100
+        && data.applicantName is string && data.applicantName.size() <= 200
+        && data.mobile is string && data.mobile.size() <= 50
+        && data.status is string && data.status.size() <= 100
+        && data.estimatedDays is string && data.estimatedDays.size() <= 100
+        && data.office is string && data.office.size() <= 200;
+    }
+
+    function isValidGlobalSettings(data) {
+      return data.adminPassword is string && data.adminPassword.size() <= 100
+        && data.systemBannerText is string && data.systemBannerText.size() <= 1000;
+    }
+
+    // Posts Collection Rules
+    match /posts/{postId} {
+      allow read, write: if true;
+    }
+
+    // Applications Collection Rules
+    match /applications/{applicationId} {
+      allow read, write: if true;
+    }
+
+    // Global Settings Rules
+    match /settings/{settingsDoc} {
+      allow read, write: if true;
+    }
+
+    // Users Collection Rules
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "Post": {
+      "title": "Post",
+      "description": "Scheme or update post published by the admin.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string" },
+        "badge": { "type": "string" },
+        "bannerTitle": { "type": "string" },
+        "bannerSubtitle": { "type": "string" },
+        "bannerColor": { "type": "string" },
+        "title": { "type": "string" },
+        "author": { "type": "string" },
+        "date": { "type": "string" },
+        "views": { "type": "number" },
+        "details": { "type": "object" }
+      },
+      "required": ["id", "category", "badge", "title", "author", "date", "details"]
+    },
+    "Application": {
+      "title": "Application",
+      "description": "User application submitted for various government schemes or documents.",
+      "type": "object",
+      "properties": {
+        "receiptId": { "type": "string" },
+        "date": { "type": "string" },
+        "schemeName": { "type": "string" },
+        "badge": { "type": "string" },
+        "applicantName": { "type": "string" },
+        "mobile": { "type": "string" },
+        "status": { "type": "string" },
+        "estimatedDays": { "type": "string" },
+        "office": { "type": "string" },
+        "details": { "type": "object" }
+      },
+      "required": ["receiptId", "date", "schemeName", "badge", "applicantName", "mobile", "status", "estimatedDays", "office", "details"]
+    },
+    "GlobalSettings": {
+      "title": "GlobalSettings",
+      "description": "System settings and admin password/configurations.",
+      "type": "object",
+      "properties": {
+        "adminPassword": { "type": "string" },
+        "systemBannerText": { "type": "string" },
+        "viewsMap": { "type": "object" }
+      },
+      "required": ["adminPassword", "systemBannerText", "viewsMap"]
+    }
+  },
+  "firestore": {
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Government scheme/update posts collection"
+    },
+    "/applications/{applicationId}": {
+      "schema": "Application",
+      "description": "User scheme applications and leads collection"
+    },
+    "/settings/global": {
+      "schema": "GlobalSettings",
+      "description": "Administrative global settings document"
+    }
+  }
+}

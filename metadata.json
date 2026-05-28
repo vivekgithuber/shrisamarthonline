@@ -1,0 +1,6 @@
+{
+  "name": "श्रीसमर्थ ऑनलाईन सर्विसेस",
+  "description": "एक ऑनलाइन माहिती हक्काची व्यासपीठ - महाराष्ट्रातील सर्व सरकारी योजना, जॉब भरती, शेतकरी योजना, शासन निर्णय (GR) आणि नवीन अपडेट्स मिळवण्यासाठी व्यासपीठ.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
